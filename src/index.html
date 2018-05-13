@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cas Notes</title>
+    <meta name="description" content="Application for managing notes">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+</head>
+<body>
+<div id="create-note">
+    <form class="flex-container" onsubmit="saveNote()">
+        <div>
+            <label class="flex-item-column-1">Title</label>
+            <input type="text" id="input-title" type="text" class="flex-item-column-2" value="" required>
+        </div>
+        <div>
+            <label class="flex-item-column-1">Description</label>
+            <input type="text" id="input-description" type="text" class="flex-item-column-2 input-description" value=""
+                   required>
+        </div>
+        <div>
+            <label class="flex-item-column-1">Urgency</label>
+            <div>
+                <div>
+                    <label class="radio-button" for="radio-urgency-very-low">Very Low</label>
+                    <input type="radio" id="radio-urgency-very-low" name="radio-urgency" value="Very Low">
+                </div>
+                <div>
+                    <label class="radio-button" for="radio-urgency-low">Low</label>
+                    <input type="radio" id="radio-urgency-low" name="radio-urgency" value="Low">
+                </div>
+                <div>
+                    <label class="radio-button" for="radio-urgency-medium">Medium</label>
+                    <input type="radio" id="radio-urgency-medium" name="radio-urgency" value="Medium">
+                </div>
+                <div>
+                    <label class="radio-button" for="radio-urgency-high">High</label>
+                    <input type="radio" id="radio-urgency-high" name="radio-urgency" value="High">
+                </div>
+                <div>
+                    <label class="radio-button" for="radio-urgency-very-high">Very High</label>
+                    <input type="radio" id="radio-urgency-very-high" name="radio-urgency" value="Very High">
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="flex-item-column-1">Due Date</label>
+            <input type="text" id="input-due-date" class="flex-item-column-2" value="" required>
+        </div>
+        <div>
+            <div class="align-right">
+                <button type="submit">Save</button>
+                <button>Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="manage-notes">
+    <div class="flex-container">
+        <div>
+            <button>Create new Note</button>
+        </div>
+        <div>
+            <div>
+                <label for="radio-sort-by-finish-date">By finish date</label>
+                <input type="radio" id="radio-sort-by-finish-date" name="radio-sort" value="finish-date">
+            </div>
+            <div>
+                <label for="radio-sort-by-created-date">By created date</label>
+                <input type="radio" id="radio-sort-by-created-date" name="radio-sort" value="created-date">
+            </div>
+            <div>
+                <label for="radio-sort-by-importance">By importance</label>
+                <input type="radio" id="radio-sort-by-importance" name="radio-sort" value="importance">
+            </div>
+        </div>
+        <div>
+            <button>Show finished</button>
+        </div>
+        <div id="note-entries">
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
