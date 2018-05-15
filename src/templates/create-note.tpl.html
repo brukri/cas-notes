@@ -1,44 +1,45 @@
 <div id="create-note">
     <form class="flex-container" onsubmit="createNotesController.addNote()">
-        <div>
+        <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Title</label>
-            <input type="text" id="input-title" type="text" class="flex-item-column-2" value="" required>
+            <input type="text" id="input-title" type="text" class="flex-item-column-end" value="" required>
         </div>
-        <div>
+        <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Description</label>
-            <input type="text" id="input-description" type="text" class="flex-item-column-2 input-description" value=""
+            <input type="text" id="input-description" type="text" class="flex-item-column-end input-description"
+                   value=""
                    required>
         </div>
-        <div>
-            <label class="flex-item-column-1">Urgency</label>
-            <div>
+        <div class="flex-item-flow-row">
+            <label class="flex-item-column-1">Priority</label>
+            <div class="flex-item-flow-row">
                 <div>
-                    <label class="radio-button" for="radio-urgency-very-low">Very Low</label>
-                    <input type="radio" id="radio-urgency-very-low" name="radio-urgency" value="1">
+                    <input type="radio" id="radio-priority-very-low" name="radio-priority" value="1">
+                    <label class="radio-button" for="radio-priority-very-low">Very Low</label>
                 </div>
                 <div>
-                    <label class="radio-button" for="radio-urgency-low">Low</label>
-                    <input type="radio" id="radio-urgency-low" name="radio-urgency" value="2">
+                    <input type="radio" id="radio-priority-low" name="radio-priority" value="2">
+                    <label class="radio-button" for="radio-priority-low">Low</label>
                 </div>
                 <div>
-                    <label class="radio-button" for="radio-urgency-medium">Medium</label>
-                    <input type="radio" id="radio-urgency-medium" name="radio-urgency" value="3">
+                    <input type="radio" id="radio-priority-medium" name="radio-priority" value="3">
+                    <label class="radio-button" for="radio-priority-medium">Medium</label>
                 </div>
                 <div>
-                    <label class="radio-button" for="radio-urgency-high">High</label>
-                    <input type="radio" id="radio-urgency-high" name="radio-urgency" value="4">
+                    <input type="radio" id="radio-priority-high" name="radio-priority" value="4">
+                    <label class="radio-button" for="radio-priority-high">High</label>
                 </div>
                 <div>
-                    <label class="radio-button" for="radio-urgency-very-high">Very High</label>
-                    <input type="radio" id="radio-urgency-very-high" name="radio-urgency" value="5">
+                    <input type="radio" id="radio-priority-very-high" name="radio-priority" value="5">
+                    <label class="radio-button" for="radio-priority-very-high">Very High</label>
                 </div>
             </div>
         </div>
-        <div>
+        <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Due Date</label>
-            <input type="date" id="input-due-date" class="flex-item-column-2" required>
+            <input type="date" id="input-due-date" class="flex-item-column-end" required>
         </div>
-        <div>
+        <div class="flex-item-flow-row">
             <div class="align-right">
                 <button type="submit">Save</button>
                 <button type="button" onclick="showManageNotesView()">Cancel</button>

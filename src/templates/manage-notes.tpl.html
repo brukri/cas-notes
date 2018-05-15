@@ -1,26 +1,27 @@
 <div id="manage-notes">
     <div class="flex-container">
-        <div>
+        <div class="flex-item-flow-row">
             <button onclick="showCreateNoteView()">Create new note</button>
         </div>
-        <div>
+        <div class="flex-item-flow-row">
             <div>
-                <label for="radio-sort-by-finish-date">By finish date</label>
                 <input type="radio" id="radio-sort-by-finish-date" name="radio-sort" value="finish-date">
+                <label for="radio-sort-by-finish-date">By finish date</label>
             </div>
             <div>
-                <label for="radio-sort-by-created-date">By created date</label>
                 <input type="radio" id="radio-sort-by-created-date" name="radio-sort" value="created-date">
+                <label for="radio-sort-by-created-date">By created date</label>
             </div>
             <div>
-                <label for="radio-sort-by-importance">By importance</label>
                 <input type="radio" id="radio-sort-by-importance" name="radio-sort" value="importance">
+                <label for="radio-sort-by-importance">By importance</label>
             </div>
         </div>
-        <div>
-            <button>Show finished</button>
+        <div class="flex-item-flow-row">
+            <input type="checkbox" id="input-show-finished" value="false">
+            <label for="input-show-finished">Show finished</label>
         </div>
-        <div id="note-entries">
+        <div id="note-entries" class="flex-item-flow-column">
 
         </div>
     </div>

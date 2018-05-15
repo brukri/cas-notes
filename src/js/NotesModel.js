@@ -1,8 +1,8 @@
 class NotesModel {
-    constructor(title, description, urgency, dueDate, finished) {
+    constructor(title, description, priority, dueDate, finished) {
         this.title = title;
         this.description = description;
-        this.urgency = urgency;
+        this.priority = priority;
         this.dueDate = dueDate;
         this.finished = finished;
     }

@@ -2,9 +2,9 @@ class NotesUtils {
 
 
     static getSelectedRadioValue(radioName) {
-        const radioUrgencyElements = document.getElementsByName(radioName);
+        const radioPriorityElements = document.getElementsByName(radioName);
 
-        for (const element of radioUrgencyElements) {
+        for (const element of radioPriorityElements) {
             if (element.checked) {
                 return element.value;
             }

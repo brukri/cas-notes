@@ -34,24 +34,34 @@ body {
 .flex-container > div {
     flex: 1;
     margin: 1em;
-    display: flex;
-    flex-direction: row;
+
 }
 
 .flex-container > div > div {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+
+}
+
+.flex-item-flow-row {
     display: flex;
     flex-direction: row;
 }
 
-.flex-container > div > div > * {
-    margin-left: 15px;
+.flex-item-flow-column {
+    display: flex;
+    flex-direction: column;
+}
+
+input + label {
+    margin-right: 15px;
 }
 
 .flex-item-column-1 {
     flex-basis: 20%;
 }
 
-.flex-item-column-2 {
+.flex-item-column-end {
     flex-grow: 1;
 }
 

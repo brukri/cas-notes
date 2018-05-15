@@ -8,9 +8,9 @@ class CreateNotesController {
         const title = document.getElementById('input-title').value;
         const description = document.getElementById('input-description').value;
         const dueDate = document.getElementById('input-due-date').value;
-        const urgency = NotesUtils.getSelectedRadioValue('radio-urgency');
+        const priority = NotesUtils.getSelectedRadioValue('radio-priority');
 
-        NotesStorage.addNote(new NotesModel(title, description, urgency, dueDate, false));
+        NotesStorage.saveNote(new NotesModel(title, description, priority, dueDate, false));
     }
 
 }
