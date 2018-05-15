@@ -1,6 +1,7 @@
 class NotesStorage {
     static addNote(note) {
         const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : [];
+        note.id = notes.length;
         notes.push(note);
         localStorage.setItem('notes', JSON.stringify(notes));
     }

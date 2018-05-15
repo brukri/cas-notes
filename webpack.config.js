@@ -34,8 +34,8 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(tpl|txt)(\?.*)?$/,
-                use: 'raw-loader'
+                test: /\.handlebars$/,
+                use: 'handlebars-loader'
             }
         ]
     },

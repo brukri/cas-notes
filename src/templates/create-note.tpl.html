@@ -14,34 +14,34 @@
             <div>
                 <div>
                     <label class="radio-button" for="radio-urgency-very-low">Very Low</label>
-                    <input type="radio" id="radio-urgency-very-low" name="radio-urgency" value="Very Low">
+                    <input type="radio" id="radio-urgency-very-low" name="radio-urgency" value="1">
                 </div>
                 <div>
                     <label class="radio-button" for="radio-urgency-low">Low</label>
-                    <input type="radio" id="radio-urgency-low" name="radio-urgency" value="Low">
+                    <input type="radio" id="radio-urgency-low" name="radio-urgency" value="2">
                 </div>
                 <div>
                     <label class="radio-button" for="radio-urgency-medium">Medium</label>
-                    <input type="radio" id="radio-urgency-medium" name="radio-urgency" value="Medium">
+                    <input type="radio" id="radio-urgency-medium" name="radio-urgency" value="3">
                 </div>
                 <div>
                     <label class="radio-button" for="radio-urgency-high">High</label>
-                    <input type="radio" id="radio-urgency-high" name="radio-urgency" value="High">
+                    <input type="radio" id="radio-urgency-high" name="radio-urgency" value="4">
                 </div>
                 <div>
                     <label class="radio-button" for="radio-urgency-very-high">Very High</label>
-                    <input type="radio" id="radio-urgency-very-high" name="radio-urgency" value="Very High">
+                    <input type="radio" id="radio-urgency-very-high" name="radio-urgency" value="5">
                 </div>
             </div>
         </div>
         <div>
             <label class="flex-item-column-1">Due Date</label>
-            <input type="text" id="input-due-date" class="flex-item-column-2" value="" required>
+            <input type="date" id="input-due-date" class="flex-item-column-2" required>
         </div>
         <div>
             <div class="align-right">
                 <button type="submit">Save</button>
-                <button>Cancel</button>
+                <button type="button" onclick="showManageNotesView()">Cancel</button>
             </div>
         </div>
     </form>
