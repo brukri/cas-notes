@@ -1,7 +1,6 @@
 import './styles/styles.css';
 import CreateNoteTemplate from './templates/create-note.tpl.html';
 import ManageNotesTemplate from './templates/manage-notes.tpl.html';
-import NoteEntry from './templates/note-entry.tpl.html';
 import CreateNotesController from './js/CreateNotesController';
 import ManageNotesController from './js/ManageNotesController';
 
@@ -23,13 +22,7 @@ function init() {
 
 function showManageNotesView() {
     contentDiv.innerHTML = `${ManageNotesTemplate}`;
-    addNoteEntries();
-}
-
-function addNoteEntries() {
-    const noteEntriesDiv = document.getElementById('note-entries');
-    noteEntriesDiv.innerHTML = `${NoteEntry}`;
-
+    manageNotesController.addNoteEntriesToDom();
 }
 
 function showCreateNoteView() {

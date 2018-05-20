@@ -1,7 +1,4 @@
 class NotesStorage {
-    constructor() {
-        NotesStorage._save([]);
-    }
 
     static saveNote(note) {
         const notes = this.loadAllNotes();
@@ -11,7 +8,7 @@ class NotesStorage {
     }
 
     static loadAllNotes() {
-        return JSON.parse(localStorage.getItem('notes'));
+        return JSON.parse(localStorage.getItem('notes')) || [];
     }
 
     static _save(notes) {
