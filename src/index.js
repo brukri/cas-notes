@@ -1,9 +1,11 @@
 import './styles/styles.css';
-import CreateNoteTemplate from './templates/create-note.tpl.html';
-import ManageNotesTemplate from './templates/manage-notes.tpl.html';
 import CreateNotesController from './js/CreateNotesController';
 import ManageNotesController from './js/ManageNotesController';
+import CreateNoteHandlebars from './templates/create-note.handlebars';
+import ManageNotesHandlebars from './templates/manage-notes.handlebars';
+import ManageNotesModel from './js/ManageNotesModel';
 
+require('handlebars');
 const createNotesController = new CreateNotesController();
 const manageNotesController = new ManageNotesController();
 // Bind createNotesController to the global scope
@@ -17,14 +19,18 @@ const contentDiv = document.getElementById('content');
 init();
 
 function init() {
-    showManageNotesView();
+    showManageNotesView(ManageNotesModel.createDefault());
 }
 
-function showManageNotesView() {
-    contentDiv.innerHTML = `${ManageNotesTemplate}`;
+function showManageNotesView(config) {
+    contentDiv.innerHTML = ManageNotesHandlebars(
+        config
+    );
     manageNotesController.addNoteEntriesToDom();
 }
 
-function showCreateNoteView() {
-    contentDiv.innerHTML = `${CreateNoteTemplate}`;
+function showCreateNoteView(noteEntry) {
+    contentDiv.innerHTML = CreateNoteHandlebars(
+        noteEntry
+    );
 }

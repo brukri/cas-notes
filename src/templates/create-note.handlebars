@@ -1,43 +1,46 @@
 <div id="create-note">
-    <form class="flex-container" onsubmit="createNotesController.addNote()">
+    <form class="flex-container" onsubmit="createNotesController.createOrUpdateNote({{id}})">
         <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Title</label>
-            <input type="text" id="input-title" type="text" class="flex-item-column-end" value="" required>
+            <input type="text" id="input-title" type="text" class="flex-item-column-end" value="{{title}}" required>
         </div>
         <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Description</label>
             <input type="text" id="input-description" type="text" class="flex-item-column-end input-description"
-                   value=""
+                   value="{{description}}"
                    required>
         </div>
         <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Priority</label>
             <div class="flex-item-flow-row">
                 <div>
-                    <input type="radio" id="radio-priority-very-low" name="radio-priority" value="1">
+                    <input type="radio" id="radio-priority-very-low" name="radio-priority" value="1" {{checked priority
+                                                                                                               1}}>
                     <label class="radio-button" for="radio-priority-very-low">Very Low</label>
                 </div>
                 <div>
-                    <input type="radio" id="radio-priority-low" name="radio-priority" value="2">
+                    <input type="radio" id="radio-priority-low" name="radio-priority" value="2" {{checked priority 2}}>
                     <label class="radio-button" for="radio-priority-low">Low</label>
                 </div>
                 <div>
-                    <input type="radio" id="radio-priority-medium" name="radio-priority" value="3">
+                    <input type="radio" id="radio-priority-medium" name="radio-priority" value="3" {{checked priority
+                                                                                                             3}}>
                     <label class="radio-button" for="radio-priority-medium">Medium</label>
                 </div>
                 <div>
-                    <input type="radio" id="radio-priority-high" name="radio-priority" value="4">
+                    <input type="radio" id="radio-priority-high" name="radio-priority" value="4" {{checked priority 4}}>
                     <label class="radio-button" for="radio-priority-high">High</label>
                 </div>
                 <div>
-                    <input type="radio" id="radio-priority-very-high" name="radio-priority" value="5">
+                    <input type="radio" id="radio-priority-very-high" name="radio-priority" value="5" {{checked priority
+                                                                                                                5}}>
                     <label class="radio-button" for="radio-priority-very-high">Very High</label>
                 </div>
             </div>
         </div>
         <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Due Date</label>
-            <input type="date" id="input-due-date" class="flex-item-column-end" required>
+            <input type="date" id="input-due-date" class="flex-item-column-end" value="{{dueDate}}" required>
         </div>
         <div class="flex-item-flow-row">
             <div class="align-right">

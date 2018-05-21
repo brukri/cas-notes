@@ -5,7 +5,8 @@
         </div>
         <div class="flex-item-flow-row">
             <div>
-                <input type="radio" id="radio-sort-by-finish-date" name="radio-sort" value="finish-date">
+                <input type="radio" id="radio-sort-by-finish-date" name="radio-sort" value="finish-date" {{checked
+                        sortBy 'finishDate'}}>
                 <label for="radio-sort-by-finish-date">By finish date</label>
             </div>
             <div>
@@ -18,7 +19,7 @@
             </div>
         </div>
         <div class="flex-item-flow-row">
-            <input type="checkbox" id="input-show-finished" value="false">
+            <input type="checkbox" id="input-show-finished" {{checked showFinished true}}>
             <label for="input-show-finished">Show finished</label>
         </div>
         <div id="note-entries" class="flex-item-flow-column">

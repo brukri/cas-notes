@@ -8,8 +8,9 @@ class NotesUtils {
             if (element.checked) {
                 return element.value;
             }
-            return null;
         }
+
+        return null;
     }
 }
 

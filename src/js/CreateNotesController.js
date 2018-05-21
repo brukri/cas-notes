@@ -4,13 +4,19 @@ import NotesUtils from './NotesUtils';
 
 class CreateNotesController {
 
-    addNote() {
+    createOrUpdateNote(id) {
         const title = document.getElementById('input-title').value;
         const description = document.getElementById('input-description').value;
         const dueDate = document.getElementById('input-due-date').value;
-        const priority = NotesUtils.getSelectedRadioValue('radio-priority');
+        const priority = parseInt(NotesUtils.getSelectedRadioValue('radio-priority'));
 
-        NotesStorage.saveNote(new NotesModel(title, description, priority, dueDate, false));
+        if (id !== undefined) {
+            NotesStorage.updateNote(new NotesModel(id, title, description, priority, dueDate, false));
+        } else {
+            NotesStorage.saveNote(new NotesModel(undefined, title, description, priority, dueDate, false));
+
+        }
+
     }
 
 }
