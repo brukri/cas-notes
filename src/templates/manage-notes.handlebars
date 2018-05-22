@@ -1,7 +1,7 @@
 <div id="manage-notes">
     <div class="flex-container">
         <div class="flex-item-flow-row">
-            <button onclick="showCreateNoteView()">Create new note</button>
+            <button onclick="notesController.showCreateNoteView()">Create new note</button>
         </div>
         <div class="flex-item-flow-row">
             <div>
@@ -23,7 +23,9 @@
             <label for="input-show-finished">Show finished</label>
         </div>
         <div id="note-entries" class="flex-item-flow-column">
-
+            {{#each entries}}
+                {{> entry}}
+            {{/each}}
         </div>
     </div>
 

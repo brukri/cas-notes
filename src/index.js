@@ -1,36 +1,15 @@
 import './styles/styles.css';
-import CreateNotesController from './js/CreateNotesController';
-import ManageNotesController from './js/ManageNotesController';
-import CreateNoteHandlebars from './templates/create-note.handlebars';
-import ManageNotesHandlebars from './templates/manage-notes.handlebars';
-import ManageNotesModel from './js/ManageNotesModel';
+import NotesController from './js/NotesController';
 
 require('handlebars');
-const createNotesController = new CreateNotesController();
-const manageNotesController = new ManageNotesController();
-// Bind createNotesController to the global scope
-window.createNotesController = createNotesController;
-window.manageNotesController = manageNotesController;
-window.showManageNotesView = showManageNotesView;
-window.showCreateNoteView = showCreateNoteView;
-
 const contentDiv = document.getElementById('content');
+const notesController = new NotesController(contentDiv);
+
+// Bind notesController to the global scope
+window.notesController = notesController;
 
 init();
 
 function init() {
-    showManageNotesView(ManageNotesModel.createDefault());
-}
-
-function showManageNotesView(config) {
-    contentDiv.innerHTML = ManageNotesHandlebars(
-        config
-    );
-    manageNotesController.addNoteEntriesToDom();
-}
-
-function showCreateNoteView(noteEntry) {
-    contentDiv.innerHTML = CreateNoteHandlebars(
-        noteEntry
-    );
+    notesController.showManageNotesView();
 }

@@ -1,5 +1,5 @@
 <div id="create-note">
-    <form class="flex-container" onsubmit="createNotesController.createOrUpdateNote({{id}})">
+    <form class="flex-container" onsubmit="notesController.createOrUpdateNote({{id}})">
         <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Title</label>
             <input type="text" id="input-title" type="text" class="flex-item-column-end" value="{{title}}" required>
@@ -45,7 +45,7 @@
         <div class="flex-item-flow-row">
             <div class="align-right">
                 <button type="submit">Save</button>
-                <button type="button" onclick="showManageNotesView()">Cancel</button>
+                <button type="button" onclick="notesController.showManageNotesView()">Cancel</button>
             </div>
         </div>
     </form>
