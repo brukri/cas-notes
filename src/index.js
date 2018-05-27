@@ -11,5 +11,6 @@ window.notesController = notesController;
 init();
 
 function init() {
+    notesController.init();
     notesController.showManageNotesView();
 }

@@ -1,5 +1,5 @@
 <div id="create-note">
-    <form class="flex-container" onsubmit="notesController.createOrUpdateNote({{id}})">
+    <form id="create-note-form" class="flex-container" note-id="{{id}}" onsubmit="return false">
         <div class="flex-item-flow-row">
             <label class="flex-item-column-1">Title</label>
             <input type="text" id="input-title" type="text" class="flex-item-column-end" value="{{title}}" required>
