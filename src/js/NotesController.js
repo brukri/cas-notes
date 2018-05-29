@@ -47,8 +47,16 @@ class NotesController {
             case 'input-set-finished':
                 this.handleSetFinishedClicked(event.target);
                 break;
+            case 'input-show-finished':
+                this.handleShowFinished(event.target);
         }
 
+    }
+
+    handleShowFinished(targetElement) {
+        const isShowFinishedChecked = targetElement.checked;
+        this.manageNotesModel.showFinished = isShowFinishedChecked;
+        this.refreshManageNotesView();
     }
 
     handleSetFinishedClicked(targetElement) {
@@ -111,8 +119,20 @@ class NotesController {
         );
     }
 
+    filterUnFinishedNotes(notes) {
+        if (!this.manageNotesModel.showFinished) {
+            return notes.filter((entry) => {
+                return !entry.finished;
+            })
+        }
+
+        return notes;
+    }
+
     enrichMangeNotesModelWithEntries() {
-        const sortedNotes = this.sort(NotesStorage.loadAllNotes());
+        const notes = NotesStorage.loadAllNotes();
+        const filteredNotes = this.filterUnFinishedNotes(notes);
+        const sortedNotes = this.sort(filteredNotes);
         const transformedSortedNotes = this.transformPriority(sortedNotes);
         this.manageNotesModel.entries = transformedSortedNotes;
 
