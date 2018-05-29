@@ -72,3 +72,7 @@ input + label {
 .align-right {
     margin-left: auto;
 }
+
+.note-entry {
+    border: .05em solid black
+}
