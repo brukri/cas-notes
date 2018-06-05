@@ -12,5 +12,4 @@ init();
 
 function init() {
     notesController.init();
-    notesController.showManageNotesView();
 }

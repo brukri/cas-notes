@@ -1,8 +1,60 @@
+import NotesStorage from "./NotesStorage";
+
 const SORT_BY_DUE_DATE = 'dueDate';
 const SORT_BY_FINISH_DATE = 'finishDate';
 const SORT_BY_PRIORITY = 'priority';
 
 class NotesLogic {
+    constructor() {
+        this.manageNotesModel = ManageNotesModel.createDefault();
+        this.modelUpdateCallback = undefined;
+    }
+
+    init(modelUpdateCallback) {
+        this.modelUpdateCallback = modelUpdateCallback;
+        this.updateModels();
+    }
+
+    updateSortBy(sortBy) {
+        this.manageNotesModel.sortBy = sortBy;
+        this.updateModels();
+    }
+
+    updateShowFinished(showFinished) {
+        this.manageNotesModel.showFinished = showFinished;
+        this.updateModels();
+    }
+
+    setFinishDate(noteId) {
+        const note = NotesStorage.loadNote(noteId);
+        note.finishDate = new Date().toISOString();
+        note.finished = true;
+        NotesStorage.updateNote(note);
+        this.updateModels();
+    }
+
+    createOrUpdateNote(id, title, description, dueDate, finishDate, priorityNumber) {
+        if (!!id) {
+            NotesStorage.updateNote(NotesModel.createUpdated(parseInt(id), title, description, priorityNumber, dueDate, finishDate));
+        } else {
+            NotesStorage.createNote(NotesModel.createNew(title, description, priorityNumber, dueDate, finishDate));
+        }
+        this.updateModels();
+    }
+
+    updateModels() {
+        let notes = NotesStorage.loadAllNotes();
+
+        if (!this.manageNotesModel.showFinished) {
+            notes = NotesLogic.filterUnFinishedNotes(notes);
+        }
+
+        const sortedNotes = NotesLogic.sort(notes, this.manageNotesModel.sortBy);
+        const transformedSortedNotes = NotesLogic.transformPriority(sortedNotes);
+        this.manageNotesModel.entries = transformedSortedNotes;
+        this.modelUpdateCallback(this.manageNotesModel);
+    }
+
     static transformPriority(notes) {
         return notes.map((entry) => {
             switch (entry.priorityNumber) {

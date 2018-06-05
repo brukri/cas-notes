@@ -1,6 +1,5 @@
 class NotesUtils {
 
-
     static getSelectedRadioValue(radioName) {
         const radioPriorityElements = document.getElementsByName(radioName);
 
