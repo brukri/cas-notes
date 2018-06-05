@@ -1,7 +1,7 @@
 <div id="note-entry-{{id}}" class="flex-item-flow-column note-entry">
     <div class="flex-item-flow-row">
         <label class="flex-item-column-1">{{dueDate}}</label>
-        <lable class="flex-item-column-1">{{title}}</lable>
+        <lable class="flex-item-column-end">{{title}}</lable>
         <div class="flex-item-column-1">
             <input type="checkbox" id="input-set-finished" note-id="{{id}}" value="finished" {{attribute 'checked'
                                                                                                          finished
@@ -12,7 +12,7 @@
     </div>
     <div class="flex-item-flow-row">
         <label class="flex-item-column-1">{{priority}}</label>
-        <label class="flex-item-column-1">{{description}}</label>
+        <label class="flex-item-column-end">{{description}}</label>
         <button class="flex-item-column-1" onclick="notesController.editNote('{{id}}')" {{attribute 'disabled' finished
                                                                                                     true}}>Edit
         </button>

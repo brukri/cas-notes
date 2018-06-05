@@ -7,7 +7,30 @@
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Tahoma, Helvetica, Arial sans-serif;
+}
+
+button {
+    background-color: burlywood; /* Green */
+    border: none;
+    color: black;
+    padding: 0.5em 0.8em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em
+}
+
+input {
+    background-color: wheat;
+    border: .05em solid black
+}
+
+textarea {
+    resize: none;
+    background-color: wheat;
+    border: .05em solid black;
+    min-height: 10em
 }
 
 /*.radio-button {*/
@@ -25,10 +48,10 @@ body {
 
 .flex-container {
     min-height: 100%;
-    min-width: 600px;
+    min-width: 700px;
     display: flex;
     flex-direction: column;
-    background-color: lavender;
+    background-color: wheat;
 }
 
 .flex-container > div {
@@ -44,6 +67,8 @@ body {
 }
 
 .flex-item-flow-row {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
     display: flex;
     flex-direction: row;
 }
@@ -65,14 +90,11 @@ input + label {
     flex-grow: 1;
 }
 
-.input-description {
-    height: 10em;
-}
-
 .align-right {
     margin-left: auto;
 }
 
 .note-entry {
+    padding: 1em 1em;
     border: .05em solid black
 }
