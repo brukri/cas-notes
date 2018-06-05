@@ -18,7 +18,9 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1em
+    font-size: 1em;
+    min-width: 10em;
+    max-width: 10em;
 }
 
 input {
@@ -33,18 +35,17 @@ textarea {
     min-height: 10em
 }
 
-/*.radio-button {*/
-/*display: inline-block;*/
-/*width: 100px;*/
-/*height: 50px;*/
-/*border: solid 2px red;*/
-/*}*/
-/*input[type="radio"] {*/
-/*display:none;*/
-/*}*/
-/*input[type="radio"]:checked {*/
-/*border: solid 2px green;*/
-/*}*/
+input[type="radio"] + label {
+    padding: 0.5em 0.8em;
+}
+
+input[type="radio"]:checked + label {
+    background-color: burlywood;
+}
+
+input[type="radio"] {
+    display: none;
+}
 
 .flex-container {
     min-height: 100%;
