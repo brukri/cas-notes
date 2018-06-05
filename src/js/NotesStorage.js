@@ -1,6 +1,6 @@
 class NotesStorage {
 
-    static saveNote(note) {
+    static createNote(note) {
         const notes = this.loadAllNotes();
         note.id = notes.length;
         notes.push(note);

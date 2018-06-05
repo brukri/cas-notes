@@ -1,13 +1,15 @@
 import NotesStorage from './NotesStorage';
-import ManageNotesModel from './ManageNotesModel';
 import ManageNotesHandlebars from '../templates/manage-notes.handlebars';
 import CreateNoteHandlebars from '../templates/create-note.handlebars';
-import NotesModel from "./NotesModel";
+import {
+    ManageNotesModel,
+    NotesLogic,
+    NotesModel,
+    SORT_BY_DUE_DATE,
+    SORT_BY_FINISH_DATE,
+    SORT_BY_PRIORITY
+} from "./NotesModel";
 import NotesUtils from "./NotesUtils";
-
-const SORT_BY_DUE_DATE = 'dueDate';
-const SORT_BY_FINISH_DATE = 'finishDate';
-const SORT_BY_PRIORITY = 'priority';
 
 class NotesController {
     constructor(contentDiv) {
@@ -72,36 +74,6 @@ class NotesController {
         this.refreshManageNotesView();
     }
 
-    sort(notes) {
-        switch (this.manageNotesModel.sortBy) {
-            case SORT_BY_FINISH_DATE:
-                return this.sortByFinishDate(notes);
-            case SORT_BY_DUE_DATE:
-                return this.sortByDueDate(notes);
-            case SORT_BY_PRIORITY:
-                return this.sortByPriority(notes);
-        }
-        return notes;
-    }
-
-    sortByFinishDate(notes) {
-        return notes.sort((entry1, entry2) => {
-            return new Date(entry2.finishDate) - new Date(entry1.finishDate);
-        });
-    }
-
-    sortByDueDate(notes) {
-        return notes.sort((entry1, entry2) => {
-            return new Date(entry2.dueDate) - new Date(entry1.dueDate);
-        });
-    }
-
-    sortByPriority(notes) {
-        return notes.sort((entry1, entry2) => {
-            return entry2.priorityNumber - entry1.priorityNumber;
-        });
-    }
-
     refreshManageNotesView() {
         this.enrichMangeNotesModelWithEntries();
         this.contentDiv.innerHTML = ManageNotesHandlebars(
@@ -119,46 +91,19 @@ class NotesController {
         );
     }
 
-    filterUnFinishedNotes(notes) {
-        if (!this.manageNotesModel.showFinished) {
-            return notes.filter((entry) => {
-                return !entry.finished;
-            })
-        }
-
-        return notes;
-    }
-
     enrichMangeNotesModelWithEntries() {
         const notes = NotesStorage.loadAllNotes();
-        const filteredNotes = this.filterUnFinishedNotes(notes);
-        const sortedNotes = this.sort(filteredNotes);
-        const transformedSortedNotes = this.transformPriority(sortedNotes);
+        let filteredNotes;
+
+        if (!this.manageNotesModel.showFinished) {
+            filteredNotes = NotesLogic.filterUnFinishedNotes(notes);
+        } else {
+            filteredNotes = notes;
+        }
+        const sortedNotes = NotesLogic.sort(filteredNotes, this.manageNotesModel.sortBy);
+        const transformedSortedNotes = NotesLogic.transformPriority(sortedNotes);
         this.manageNotesModel.entries = transformedSortedNotes;
 
-    }
-
-    transformPriority(notes) {
-        return notes.map((entry) => {
-            switch (entry.priorityNumber) {
-                case 1:
-                    entry.priority = 'Very Low';
-                    break;
-                case 2:
-                    entry.priority = 'Low';
-                    break;
-                case 3:
-                    entry.priority = 'Medium';
-                    break;
-                case 4:
-                    entry.priority = 'High';
-                    break;
-                case 5:
-                    entry.priority = 'Very High';
-                    break;
-            }
-            return entry;
-        });
     }
 
     editNote(id) {
@@ -176,7 +121,7 @@ class NotesController {
         if (!!id) {
             NotesStorage.updateNote(NotesModel.createUpdated(parseInt(id), title, description, priorityNumber, dueDate, finishDate));
         } else {
-            NotesStorage.saveNote(NotesModel.createNew(title, description, priorityNumber, dueDate, finishDate));
+            NotesStorage.createNote(NotesModel.createNew(title, description, priorityNumber, dueDate, finishDate));
 
         }
     }
