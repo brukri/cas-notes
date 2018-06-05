@@ -33,7 +33,7 @@ class NotesLogic {
         this.updateModels();
     }
 
-    createOrUpdateNote(id, title, description, dueDate, finishDate, priorityNumber) {
+    createOrUpdateNote(id, title, description, priorityNumber, dueDate, finishDate) {
         if (!!id) {
             NotesStorage.updateNote(NotesModel.createUpdated(parseInt(id), title, description, priorityNumber, dueDate, finishDate));
         } else {
