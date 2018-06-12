@@ -12,18 +12,17 @@ body {
 
 button {
     background-color: burlywood;
-    border: none;
-    color: black;
+    border: .05em solid black;
     padding: 0.5em 0.8em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 1em;
-    min-width: 10em;
-    max-width: 10em;
+}
+
+button:disabled {
+    color: grey;
 }
 
 input {
+    display: none;
     background-color: wheat;
     border: .05em solid black
 }
@@ -35,16 +34,36 @@ textarea {
     min-height: 10em
 }
 
-input[type="radio"] + label {
+input + label {
+    text-align: center;
+    display: block;
     padding: 0.5em 0.8em;
+    border: .05em solid black;
+    min-width: 10em;
 }
 
-input[type="radio"]:checked + label {
+/*input[type="checkbox"] + label {*/
+/*padding: 0.5em 0.8em;*/
+/*}*/
+
+input:checked + label {
     background-color: burlywood;
 }
 
-input[type="radio"] {
-    display: none;
+input:disabled + label {
+    color: grey;
+}
+
+/*input[type="checkbox"]:checked + label {*/
+/*background-color: burlywood;*/
+/*}*/
+
+/*input[type="checkbox"] {*/
+/*display: none;*/
+/*}*/
+
+.sort-filter-by {
+    width: 4em;
 }
 
 .flex-container {
@@ -77,10 +96,6 @@ input[type="radio"] {
 .flex-item-flow-column {
     display: flex;
     flex-direction: column;
-}
-
-input + label {
-    margin-right: 15px;
 }
 
 .flex-item-column-1 {

@@ -1,4 +1,5 @@
-import './styles/styles.css';
+import './styles/main-styles.css';
+import './styles/alternative-styles.css';
 import NotesController from './js/NotesController';
 
 require('handlebars');
