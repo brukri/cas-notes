@@ -83,6 +83,11 @@ class NotesController {
 
         this.notesLogic.createOrUpdateNote(id, title, description, priorityNumber, dueDate, finishDate);
     }
+
+    switchStyle(cssFile) {
+        const element = document.getElementById('link-stylesheet');
+        element.setAttribute('href', cssFile);
+    }
 }
 
 export default NotesController;

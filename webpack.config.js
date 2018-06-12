@@ -52,7 +52,7 @@ module.exports = {
     plugins: [
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new MiniCssExtractPlugin({
-            filename: "[name].css"
+            filename: "main-styles.css"
         })
     ]
 };
