@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './src/index.js',
@@ -48,5 +49,8 @@ module.exports = {
         alias: {
             handlebars: 'handlebars/dist/handlebars.js'
         }
-    }
+    },
+    plugins: [
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    ]
 };
