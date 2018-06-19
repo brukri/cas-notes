@@ -2,19 +2,16 @@
     <div class="flex-container">
         <div class="flex-item-flow-row">
             <div class="flex-item-column-1">
-                <button onclick="notesController.showCreateNoteView()">Create new note</button>
+                <button id="button-show-create-note-view">Create new note</button>
             </div>
             <div class="flex-item-column-end">
             </div>
             <div class="flex-item-column-1">
-                <input type="radio" id="radio-style-a" name="radio-style" value="main-styles.css" checked>
-                <label for="radio-style-a">Style A</label>
+                <input type="radio" id="radio-style-main" name="radio-style" checked>
+                <label for="radio-style-main">Main Style</label>
 
-                <input type="radio" id="radio-style-b" name="radio-style" value="alternative-styles.css">
-                <label for="radio-style-b">Style B</label>
-
-                <button onclick="notesController.switchStyle('main-styles.css')">Style A</button>
-                <button onclick="notesController.switchStyle('alternative-styles.css')">Style B</button>
+                <input type="radio" id="radio-style-alternative" name="radio-style">
+                <label for="radio-style-alternative">Alternative Style</label>
             </div>
         </div>
         <div class="flex-item-flow-row">

@@ -22,9 +22,16 @@ button:disabled {
 }
 
 input {
-    display: none;
     background-color: wheat;
     border: .05em solid black
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="radio"] {
+    display: none;
 }
 
 textarea {
@@ -42,10 +49,6 @@ input + label {
     min-width: 10em;
 }
 
-/*input[type="checkbox"] + label {*/
-/*padding: 0.5em 0.8em;*/
-/*}*/
-
 input:checked + label {
     background-color: burlywood;
 }
@@ -53,14 +56,6 @@ input:checked + label {
 input:disabled + label {
     color: grey;
 }
-
-/*input[type="checkbox"]:checked + label {*/
-/*background-color: burlywood;*/
-/*}*/
-
-/*input[type="checkbox"] {*/
-/*display: none;*/
-/*}*/
 
 .sort-filter-by {
     width: 4em;

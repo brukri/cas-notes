@@ -34,6 +34,12 @@ class NotesController {
             case 'radio-sort-by-priority':
                 this.notesLogic.updateSortBy(SORT_BY_PRIORITY);
                 break;
+            case 'radio-style-main' :
+                this.switchStyle('main-styles.css');
+                break;
+            case 'radio-style-alternative':
+                this.switchStyle('alternative-styles.css');
+                break;
             case 'input-set-finished':
                 this.handleSetFinishedClicked(event.target);
                 break;
@@ -43,6 +49,12 @@ class NotesController {
             case 'button-cancel-create-note':
                 this.notesLogic.updateModels();
                 break;
+            case 'button-show-create-note-view':
+                this.showCreateNoteView();
+                break;
+            case 'button-edit-note':
+                const noteId = parseInt(event.target.getAttribute('note-id'));
+                this.editNote(noteId);
         }
 
     }
@@ -81,7 +93,7 @@ class NotesController {
         const finishDate = document.getElementById('input-finish-date').value;
         const priorityNumber = parseInt(NotesUtils.getSelectedRadioValue('radio-priority'));
 
-        this.notesLogic.createOrUpdateNote(id, title, description, priorityNumber, dueDate, finishDate);
+        this.notesLogic.createOrUpdateNote(id.trim(), title.trim(), description.trim(), priorityNumber, dueDate, finishDate);
     }
 
     switchStyle(cssFile) {
