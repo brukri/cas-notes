@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "webpack-dev-server --mode development --open",
+    "start": "npm run build && npm run server",
+    "client": "webpack-dev-server --mode development --open",
+    "server": "node -r @std/esm index.mjs",
     "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -41,6 +42,7 @@
     "method-override": "^2.3.10",
     "nedb": "^1.8.0",
     "nedb-promise": "^2.0.1",
-    "http-errors": "^1.6.2"
+    "http-errors": "^1.6.2",
+    "@std/esm": "^0.23.3"
   }
 }
