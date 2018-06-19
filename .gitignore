@@ -1,6 +1,7 @@
 node_modules/
-public/
-!public/index.html
-!public/alternative-styles.css
+server/public/
+server/data
+!server/public/index.html
+!server/public/alternative-styles.css
 .vscode
 .idea

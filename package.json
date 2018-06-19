@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build && npm run server",
     "client": "webpack-dev-server --mode development --open",
-    "server": "node -r @std/esm index.mjs",
+    "server": "node -r @std/esm ./server/index.mjs",
     "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
