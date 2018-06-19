@@ -1,4 +1,6 @@
 node_modules/
-dist/
+public/
+!public/index.html
+!public/alternative-styles.css
 .vscode
 .idea
