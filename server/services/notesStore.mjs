@@ -2,18 +2,21 @@ import Datastore from 'nedb-promise';
 
 export class NotesStore {
     constructor(db) {
-        this.db = db || new Datastore({filename: './data/notes.db', autoload: true});
+        this.db = db || new Datastore({filename: './server/data/notes.db', autoload: true});
     }
 
-    static copyIds(notes) {
-        return notes.map((note) => {
-            note.id = note._id;
-            return note;
-        });
+    static enrichIds(notes) {
+        return notes.map(NotesStore.enrichId);
+    }
+
+    static enrichId(note) {
+        note.id = note._id;
+        return note;
     }
 
     async add(note) {
-        return await this.db.insert(note);
+        const insertedNote = await this.db.insert(note);
+        return NotesStore.enrichId(insertedNote);
     }
 
     async update(note) {
@@ -22,7 +25,7 @@ export class NotesStore {
 
     async getAll() {
         const notes = await this.db.find({});
-        return NotesStore.copyIds(notes);
+        return NotesStore.enrichIds(notes);
     }
 }
 
