@@ -53,7 +53,7 @@ class NotesController {
                 this.showCreateNoteView();
                 break;
             case 'button-edit-note':
-                const noteId = parseInt(event.target.getAttribute('note-id'));
+                const noteId = event.target.getAttribute('note-id');
                 this.editNote(noteId);
         }
 
@@ -65,7 +65,7 @@ class NotesController {
     }
 
     handleSetFinishedClicked(targetElement) {
-        const noteId = parseInt(targetElement.getAttribute('note-id'));
+        const noteId = targetElement.getAttribute('note-id');
         this.notesLogic.setFinishDate(noteId);
     }
 
@@ -82,8 +82,9 @@ class NotesController {
     }
 
     editNote(id) {
-        const note = NotesStorage.loadNote(parseInt(id));
-        this.showCreateNoteView(note);
+        NotesStorage.loadNote(id).then(note => {
+            this.showCreateNoteView(note);
+        });
     }
 
     createOrUpdateNote(id) {

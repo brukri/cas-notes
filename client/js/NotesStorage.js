@@ -1,28 +1,41 @@
 class NotesStorage {
 
     static createNote(note) {
-        const notes = this.loadAllNotes();
-        note.id = notes.length;
-        notes.push(note);
-        this._save(notes);
+        return fetch('http://localhost:3000/notes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        }).then((res => res.json()));
     }
 
     static updateNote(note) {
-        let allNotes = this.loadAllNotes();
-        allNotes[note.id] = note;
-        this._save(allNotes);
+        return fetch('http://localhost:3000/notes/' + note.id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        }).then((res => res.json()));
     }
 
     static loadAllNotes() {
-        return JSON.parse(localStorage.getItem('notes')) || [];
+        return fetch('http://localhost:3000/notes', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res => res.json()));
     }
 
     static loadNote(id) {
-        return this.loadAllNotes().find(entry => entry.id === id);
-    }
-
-    static _save(notes) {
-        localStorage.setItem('notes', JSON.stringify(notes));
+        return fetch('http://localhost:3000/notes/' + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res => res.json()));
     }
 }
 
