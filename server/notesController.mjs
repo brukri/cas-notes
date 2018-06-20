@@ -1,4 +1,4 @@
-import {notesStore} from '../services/notesStore'
+import {notesStore} from './notesStore'
 
 export class NotesController {
 

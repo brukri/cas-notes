@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-import {notesRoutes} from './routes/notesRoutes';
+import {notesRoutes} from './notesRoutes';
 
 const app = express();
 
