@@ -41,6 +41,7 @@ class NotesController {
                 this.switchStyle('alternative-styles.css');
                 break;
             case 'input-set-finished':
+            case 'label-set-finished':
                 this.handleSetFinishedClicked(event.target);
                 break;
             case 'input-show-finished':

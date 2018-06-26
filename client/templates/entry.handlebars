@@ -1,20 +1,29 @@
 <div id="note-entry-{{id}}" class="flex-item-flow-column note-entry">
     <div class="flex-item-flow-row">
-        <label class="flex-item-column-1">{{dueDate}}</label>
-        <label class="flex-item-column-end">{{title}}</label>
-        <div class="flex-item-column-1">
+        <div class="flex-item-column-15">
+            <label class="flex-item-column-15">{{dueDate}}</label>
+        </div>
+        <div class="flex-item-column-grow">
+            <label>{{title}}</label>
+        </div>
+        <div class="flex-item-column-15 flex-item-flow-row flex-item-justify-end">
             <input type="checkbox" id="input-set-finished" note-id="{{id}}" value="finished" {{attribute 'checked'
                                                                                                          finished
                                                                                                          true}} {{attribute
                     'disabled' finished true}}>
-            <label for="input-set-finished">Finished</label>
+            <label for="input-set-finished" id="label-set-finished" note-id="{{id}}">Finished</label>
         </div>
     </div>
     <div class="flex-item-flow-row">
-        <label class="flex-item-column-1">{{priority}}</label>
-        <label class="flex-item-column-end">{{description}}</label>
-        <button id="button-edit-note" note-id="{{id}}" class="flex-item-column-1" {{attribute 'disabled' finished
-                                                                                                    true}}>Edit
-        </button>
+        <div class="flex-item-column-15">
+            <label>{{priority}}</label>
+        </div>
+        <textarea type="text" class="flex-item-column-grow" maxlength="1000"
+                  readonly>{{description}}</textarea>
+        <div class="flex-item-column-15 flex-item-flow-row flex-item-justify-end">
+            <button id="button-edit-note" note-id="{{id}}" {{attribute 'disabled' finished
+                                                                       true}}>Edit
+            </button>
+        </div>
     </div>
 </div>

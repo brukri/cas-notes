@@ -15,6 +15,11 @@ button {
     border: .05em solid black;
     padding: 0.5em 0.8em;
     font-size: 1em;
+    min-width: 10em;
+}
+
+label {
+    padding-top: 0.5em;
 }
 
 button:disabled {
@@ -43,7 +48,6 @@ textarea {
 
 input + label {
     text-align: center;
-    display: block;
     padding: 0.5em 0.8em;
     border: .05em solid black;
     min-width: 10em;
@@ -70,20 +74,23 @@ input:disabled + label {
 }
 
 .flex-container > div {
-    flex: 1;
     margin: 1em;
 
 }
 
 .flex-container > div > div {
-    margin-top: 0.8em;
-    margin-bottom: 0.8em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 
 }
 
+.flex-item-justify-end {
+    justify-content: flex-end;
+}
+
 .flex-item-flow-row {
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     display: flex;
     flex-direction: row;
 }
@@ -93,11 +100,15 @@ input:disabled + label {
     flex-direction: column;
 }
 
-.flex-item-column-1 {
-    flex-basis: 20%;
+.flex-item-column-15 {
+    flex-basis: 15%;
 }
 
-.flex-item-column-end {
+.flex-item-column-30 {
+    flex-basis: 30%;
+}
+
+.flex-item-column-grow {
     flex-grow: 1;
 }
 

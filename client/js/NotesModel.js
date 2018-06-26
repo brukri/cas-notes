@@ -69,11 +69,11 @@ class NotesLogic {
     }
 
     setFinishDate(noteId) {
-        const note = NotesStorage.loadNote(noteId);
-        note.finishDate = moment().format('YYYY-MM-DD');
-        note.finished = true;
-        NotesStorage.updateNote(note);
-        this.updateModels();
+        NotesStorage.loadNote(noteId).then(note => {
+            note.finishDate = moment().format('YYYY-MM-DD');
+            note.finished = true;
+            NotesStorage.updateNote(note).then(this.updateModels());
+        });
     }
 
     updateModels() {
