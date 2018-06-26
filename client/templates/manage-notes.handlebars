@@ -20,20 +20,20 @@
                 <input type="radio" id="radio-sort-by-finish-date" name="radio-sort" value="finish-date" {{attribute
                         'checked'
                         sortBy 'finishDate'}}>
-                <label for="radio-sort-by-finish-date">By finish date</label>
+            <label for="radio-sort-by-finish-date">Finish Date</label>
                 <input type="radio" id="radio-sort-by-due-date" name="radio-sort" value="due-date" {{attribute 'checked'
                                                                                                                sortBy
                                                                                                                'dueDate'}}>
-                <label for="radio-sort-by-due-date">By due date</label>
+            <label for="radio-sort-by-due-date">Due Date</label>
                 <input type="radio" id="radio-sort-by-priority" name="radio-sort" value="importance" {{attribute
                         'checked'
                         sortBy 'priority'}}>
-                <label for="radio-sort-by-priority">By priority</label>
+            <label for="radio-sort-by-priority">Priority</label>
         </div>
         <div class="flex-item-flow-row">
-            <label class="sort-filter-by">Filter by</label>
+            <label class="sort-filter-by">Show</label>
             <input type="checkbox" id="input-show-finished" {{attribute 'checked' showFinished true}}>
-            <label for="input-show-finished">Show finished</label>
+            <label for="input-show-finished">Finished</label>
         </div>
         <div id="note-entries" class="flex-item-flow-column">
             {{#each entries}}
