@@ -20,13 +20,6 @@ module.exports = {
                     options: {sourceMap: true}
                 }
             },
-            // {
-            //     test: /\.css$/,
-            //     use: [
-            //         MiniCssExtractPlugin.loader,
-            //         "css-loader"
-            //     ]
-            // },
             {
                 test: /\.html$/,
                 use: [{
