@@ -3,4 +3,5 @@
 :root {
     --background-color: wheat;
     --foreground-color: burlywood;
+    --disabled-text-color: grey;
 }

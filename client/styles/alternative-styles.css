@@ -3,4 +3,5 @@
 :root {
     --background-color: darkseagreen;
     --foreground-color: olivedrab;
+    --disabled-text-color: brown;
 }

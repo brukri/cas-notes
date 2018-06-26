@@ -23,7 +23,7 @@ label {
 }
 
 button:disabled {
-    color: grey;
+    color: var(--disabled-text-color);;
 }
 
 input {
@@ -58,7 +58,7 @@ input:checked + label {
 }
 
 input:disabled + label {
-    color: grey;
+    color: var(--disabled-text-color);
 }
 
 .sort-filter-by {
