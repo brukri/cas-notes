@@ -13,22 +13,6 @@ class NotesLogic {
         this.notesStorage = new NotesStorage();
     }
 
-    static convertDate(notes) {
-        notes.forEach((note) => {
-            note.dueDate = moment(note.dueDate).format('DD.MM.YYYY');
-        });
-    }
-
-    updateSortBy(sortBy) {
-        this.manageNotesModel.sortBy = sortBy;
-        this.updateModels();
-    }
-
-    updateShowFinished(showFinished) {
-        this.manageNotesModel.showFinished = showFinished;
-        this.updateModels();
-    }
-
     static transformPriority(notes) {
         notes.forEach((entry) => {
             switch (entry.priorityNumber) {
@@ -51,6 +35,16 @@ class NotesLogic {
         });
     }
 
+    updateSortBy(sortBy) {
+        this.manageNotesModel.sortBy = sortBy;
+        this.updateModels();
+    }
+
+    updateShowFinished(showFinished) {
+        this.manageNotesModel.showFinished = showFinished;
+        this.updateModels();
+    }
+
     createOrUpdateNote(id, title, description, priorityNumber, dueDate, finishDate) {
         if (!!id) {
             this.notesStorage.updateNote(NotesModel.createUpdated(id, title, description, priorityNumber, dueDate, finishDate)).then(() => {
@@ -61,12 +55,6 @@ class NotesLogic {
                 this.updateModels();
             });
         }
-    }
-
-    init(modelUpdateCallback) {
-        this.modelUpdateCallback = modelUpdateCallback;
-        this.updateModels();
-        moment.locale('de-ch');
     }
 
     setFinishDate(noteId) {
@@ -89,6 +77,24 @@ class NotesLogic {
             this.manageNotesModel.entries = sortedNotes;
             this.modelUpdateCallback(this.manageNotesModel);
         });
+    }
+
+    static convertDate(notes) {
+        notes.forEach((note) => {
+            note.dueDate = moment(note.dueDate).format('DD.MM.YYYY');
+        });
+    }
+
+    static filterUnFinishedNotes(notes) {
+        return notes.filter((entry) => {
+            return !entry.finished;
+        });
+    }
+
+    init(modelUpdateCallback) {
+        this.modelUpdateCallback = modelUpdateCallback;
+        this.updateModels();
+        moment.locale('de-ch');
     }
 
     static sort(notes, sortBy) {
@@ -126,12 +132,6 @@ class NotesLogic {
     static _sortByPriority(notes) {
         return notes.sort((entry1, entry2) => {
             return entry2.priorityNumber - entry1.priorityNumber;
-        });
-    }
-
-    static filterUnFinishedNotes(notes) {
-        return notes.filter((entry) => {
-            return !entry.finished;
         });
     }
 }
