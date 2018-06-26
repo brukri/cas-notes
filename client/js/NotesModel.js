@@ -108,13 +108,21 @@ class NotesLogic {
 
     static _sortByFinishDate(notes) {
         return notes.sort((entry1, entry2) => {
-            return new Date(entry2.finishDate) - new Date(entry1.finishDate);
+            if (entry1.finishDate === undefined && entry2.finishDate === undefined) {
+                return 0;
+            } else if (entry1.finishDate === undefined) {
+                return 1;
+            } else if (entry2.finishDate === undefined) {
+                return -1;
+            }
+
+            return new Date(entry1.finishDate) - new Date(entry2.finishDate);
         });
     }
 
     static _sortByDueDate(notes) {
         return notes.sort((entry1, entry2) => {
-            return new Date(entry2.dueDate) - new Date(entry1.dueDate);
+            return new Date(entry1.dueDate) - new Date(entry2.dueDate);
         });
     }
 
