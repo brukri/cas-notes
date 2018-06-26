@@ -1,41 +1,39 @@
+const CONTENT_TYPE_JSON_HEADER = {
+    'Content-Type': 'application/json'
+};
+
 class NotesStorage {
 
-    static createNote(note) {
-        return fetch('http://localhost:3000/notes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(note)
-        }).then((res => res.json()));
+    createNote(note) {
+        return this._fetch('http://localhost:3000/notes', 'POST', CONTENT_TYPE_JSON_HEADER, JSON.stringify(note));
     }
 
-    static updateNote(note) {
-        return fetch('http://localhost:3000/notes/' + note.id, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(note)
-        }).then((res => res.json()));
+    updateNote(note) {
+        return this._fetch(`http://localhost:3000/notes/${note.id}`, 'POST', CONTENT_TYPE_JSON_HEADER, JSON.stringify(note));
     }
 
-    static loadAllNotes() {
-        return fetch('http://localhost:3000/notes', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then((res => res.json()));
+    loadAllNotes() {
+        return this._fetch('http://localhost:3000/notes', 'GET');
     }
 
-    static loadNote(id) {
-        return fetch('http://localhost:3000/notes/' + id, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then((res => res.json()));
+    loadNote(id) {
+        return this._fetch(`http://localhost:3000/notes/${id}`, 'GET');
+    }
+
+    _fetch(url, method, headers, body) {
+        const requestObj = {
+            method: method
+        };
+
+        if (headers) {
+            requestObj.headers = headers;
+        }
+
+        if (body) {
+            requestObj.body = body;
+        }
+
+        return fetch(url, requestObj).then((res => res.json()));
     }
 }
 

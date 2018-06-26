@@ -8,6 +8,7 @@ class NotesController {
     constructor(contentDiv) {
         this.contentDiv = contentDiv;
         this.notesLogic = new NotesLogic();
+        this.notesStorage = new NotesStorage();
     }
 
     init() {
@@ -83,7 +84,7 @@ class NotesController {
     }
 
     editNote(id) {
-        NotesStorage.loadNote(id).then(note => {
+        this.notesStorage.loadNote(id).then(note => {
             this.showCreateNoteView(note);
         });
     }

@@ -1,4 +1,4 @@
-import NotesStorage from "./NotesStorage";
+import NotesStorage from './NotesStorage';
 import moment from 'moment';
 import 'moment/locale/de-ch';
 
@@ -10,6 +10,7 @@ class NotesLogic {
     constructor() {
         this.manageNotesModel = ManageNotesModel.createDefault();
         this.modelUpdateCallback = undefined;
+        this.notesStorage = new NotesStorage();
     }
 
     static convertDate(notes) {
@@ -52,11 +53,11 @@ class NotesLogic {
 
     createOrUpdateNote(id, title, description, priorityNumber, dueDate, finishDate) {
         if (!!id) {
-            NotesStorage.updateNote(NotesModel.createUpdated(id, title, description, priorityNumber, dueDate, finishDate)).then(() => {
+            this.notesStorage.updateNote(NotesModel.createUpdated(id, title, description, priorityNumber, dueDate, finishDate)).then(() => {
                 this.updateModels();
             });
         } else {
-            NotesStorage.createNote(NotesModel.createNew(title, description, priorityNumber, dueDate, finishDate)).then(() => {
+            this.notesStorage.createNote(NotesModel.createNew(title, description, priorityNumber, dueDate, finishDate)).then(() => {
                 this.updateModels();
             });
         }
@@ -69,15 +70,15 @@ class NotesLogic {
     }
 
     setFinishDate(noteId) {
-        NotesStorage.loadNote(noteId).then(note => {
+        this.notesStorage.loadNote(noteId).then(note => {
             note.finishDate = moment().format('YYYY-MM-DD');
             note.finished = true;
-            NotesStorage.updateNote(note).then(this.updateModels());
+            this.notesStorage.updateNote(note).then(this.updateModels());
         });
     }
 
     updateModels() {
-        NotesStorage.loadAllNotes().then(notes => {
+        this.notesStorage.loadAllNotes().then(notes => {
             if (!this.manageNotesModel.showFinished) {
                 notes = NotesLogic.filterUnFinishedNotes(notes);
             }
@@ -88,10 +89,6 @@ class NotesLogic {
             this.manageNotesModel.entries = sortedNotes;
             this.modelUpdateCallback(this.manageNotesModel);
         });
-
-
-
-
     }
 
     static sort(notes, sortBy) {
