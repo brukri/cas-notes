@@ -35,10 +35,10 @@ class NotesController {
                 this.notesLogic.updateSortBy(SORT_BY_PRIORITY);
                 break;
             case 'radio-style-main' :
-                this.switchStyle('main-styles.css');
+                this.switchStyle('styles/main-styles.css');
                 break;
             case 'radio-style-alternative':
-                this.switchStyle('alternative-styles.css');
+                this.switchStyle('styles/alternative-styles.css');
                 break;
             case 'input-set-finished':
             case 'label-set-finished':

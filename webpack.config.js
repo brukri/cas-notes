@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './client/index.js',
@@ -8,7 +9,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, './server/public')
     },
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
@@ -19,13 +20,13 @@ module.exports = {
                     options: {sourceMap: true}
                 }
             },
-            {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader"
-                ]
-            },
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //         MiniCssExtractPlugin.loader,
+            //         "css-loader"
+            //     ]
+            // },
             {
                 test: /\.html$/,
                 use: [{
@@ -51,8 +52,10 @@ module.exports = {
     },
     plugins: [
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        new MiniCssExtractPlugin({
-            filename: "main-styles.css"
-        })
+        new CopyWebpackPlugin([
+            {from: './client/index.html', to: 'index.html', toType: 'file'},
+            {from: './client/styles/', to: './styles/', toType: 'dir'}
+        ], {}),
+        new CleanWebpackPlugin([path.resolve(__dirname, './server/public')]),
     ]
 };

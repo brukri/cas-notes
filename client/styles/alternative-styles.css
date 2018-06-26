@@ -1,0 +1,6 @@
+@import 'basic-styles.css';
+
+:root {
+    --background-color: darkseagreen;
+    --foreground-color: olivedrab;
+}
