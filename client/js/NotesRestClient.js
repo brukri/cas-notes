@@ -2,22 +2,22 @@ const CONTENT_TYPE_JSON_HEADER = {
     'Content-Type': 'application/json'
 };
 
-class NotesStorage {
+class NotesRestClient {
 
     createNote(note) {
-        return this._fetch('http://localhost:3000/notes', 'POST', CONTENT_TYPE_JSON_HEADER, JSON.stringify(note));
+        return this._fetch('/notes', 'POST', CONTENT_TYPE_JSON_HEADER, JSON.stringify(note));
     }
 
     updateNote(note) {
-        return this._fetch(`http://localhost:3000/notes/${note.id}`, 'POST', CONTENT_TYPE_JSON_HEADER, JSON.stringify(note));
+        return this._fetch(`/notes/${note.id}`, 'POST', CONTENT_TYPE_JSON_HEADER, JSON.stringify(note));
     }
 
     loadAllNotes() {
-        return this._fetch('http://localhost:3000/notes', 'GET');
+        return this._fetch('/notes', 'GET');
     }
 
     loadNote(id) {
-        return this._fetch(`http://localhost:3000/notes/${id}`, 'GET');
+        return this._fetch(`/notes/${id}`, 'GET');
     }
 
     _fetch(url, method, headers, body) {
@@ -37,4 +37,4 @@ class NotesStorage {
     }
 }
 
-export default NotesStorage;
+export default NotesRestClient;

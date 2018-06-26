@@ -1,4 +1,4 @@
-import NotesStorage from './NotesStorage';
+import NotesRestClient from './NotesRestClient';
 import moment from 'moment';
 import 'moment/locale/de-ch';
 
@@ -10,7 +10,7 @@ class NotesLogic {
     constructor() {
         this.manageNotesModel = ManageNotesModel.createDefault();
         this.modelUpdateCallback = undefined;
-        this.notesStorage = new NotesStorage();
+        this.notesRestClient = new NotesRestClient();
     }
 
     static transformPriority(notes) {
@@ -47,26 +47,26 @@ class NotesLogic {
 
     createOrUpdateNote(id, title, description, priorityNumber, dueDate, finishDate) {
         if (!!id) {
-            this.notesStorage.updateNote(NotesModel.createUpdated(id, title, description, priorityNumber, dueDate, finishDate)).then(() => {
+            this.notesRestClient.updateNote(NotesModel.createUpdated(id, title, description, priorityNumber, dueDate, finishDate)).then(() => {
                 this.updateModels();
             });
         } else {
-            this.notesStorage.createNote(NotesModel.createNew(title, description, priorityNumber, dueDate, finishDate)).then(() => {
+            this.notesRestClient.createNote(NotesModel.createNew(title, description, priorityNumber, dueDate, finishDate)).then(() => {
                 this.updateModels();
             });
         }
     }
 
     setFinishDate(noteId) {
-        this.notesStorage.loadNote(noteId).then(note => {
+        this.notesRestClient.loadNote(noteId).then(note => {
             note.finishDate = moment().format('YYYY-MM-DD');
             note.finished = true;
-            this.notesStorage.updateNote(note).then(this.updateModels());
+            this.notesRestClient.updateNote(note).then(this.updateModels());
         });
     }
 
     updateModels() {
-        this.notesStorage.loadAllNotes().then(notes => {
+        this.notesRestClient.loadAllNotes().then(notes => {
             if (!this.manageNotesModel.showFinished) {
                 notes = NotesLogic.filterUnFinishedNotes(notes);
             }
@@ -152,10 +152,6 @@ class NotesModel {
 
     static createUpdated(id, title, description, priorityNumber, dueDate, finishDate) {
         return new NotesModel(id, title, description, priorityNumber, dueDate, finishDate);
-    }
-
-    isFinished() {
-        return this.finishDate !== undefined;
     }
 }
 

@@ -1,4 +1,4 @@
-import NotesStorage from './NotesStorage';
+import NotesRestClient from './NotesRestClient';
 import ManageNotesHandlebars from '../templates/manage-notes.handlebars';
 import CreateNoteHandlebars from '../templates/create-note.handlebars';
 import {NotesLogic, SORT_BY_DUE_DATE, SORT_BY_FINISH_DATE, SORT_BY_PRIORITY} from "./NotesModel";
@@ -8,7 +8,7 @@ class NotesController {
     constructor(contentDiv) {
         this.contentDiv = contentDiv;
         this.notesLogic = new NotesLogic();
-        this.notesStorage = new NotesStorage();
+        this.notesRestClient = new NotesRestClient();
     }
 
     init() {
@@ -84,7 +84,7 @@ class NotesController {
     }
 
     editNote(id) {
-        this.notesStorage.loadNote(id).then(note => {
+        this.notesRestClient.loadNote(id).then(note => {
             this.showCreateNoteView(note);
         });
     }
